@@ -1,16 +1,41 @@
-# This is a sample Python script.
+import pygame
+from button_class import Button
+pygame.init()
+win_width = 540
+win_height = 900
+window = pygame.display.set_mode((win_width, win_height))
+pygame.display.set_caption('Заправки')
+font = "fonts//Black Bamboo DK.ttf"
+# Зададим цвета
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GRAY = (128, 128, 128)
+BLUE = (0, 0, 255)
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Зададим размер и положение кнопки
+button_width = 300
+button_height = 50
+button_x = (win_width - button_width) // 5
+button_y = (win_height - button_height) // 1.5
+
+button_start = Button(button_width, button_height, button_x, button_y, BLUE,"Найти заправку", 12, font)
+# Основной цикл
+running = True
+while running:
+    window.fill(WHITE)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if button_start.press(event.pos):
+            running = False
+    button_start.create(window)
+    # Отрисовка кнопки
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    # Отрисовка текста на кнопк
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    pygame.display.update()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+pygame.quit()
