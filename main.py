@@ -1,3 +1,4 @@
+import tkinter
 import tkinter as tk
 import tkintermapview
 from PIL import Image, ImageTk
@@ -66,7 +67,7 @@ class App(CTk):
         user_label.grid(row=1, column=0, sticky="w", pady=(0, 10))
         user_entry = CTkEntry(master=main_frame)
         user_entry.grid(row=1, column=1, pady=(0, 10), padx=10)
-        rosseti = ImageTk.PhotoImage(Image.open("asets\\rosseti_logo.png").resize((20, 20)))
+
         # Password label and entry box
 
         pass_label = CTkLabel(master=main_frame, text="Пароль:")
@@ -77,6 +78,18 @@ class App(CTk):
         # Remember Me check button
         remember_me = CTkCheckBox(master=main_frame, text="Запомнить меня")
         remember_me.grid(row=4, column=1, pady=(0, 10))
+        rosseti = ImageTk.PhotoImage(Image.open("asets\\Rosseti_logo.png").resize((300, 100)))
+        canvas = tk.Canvas(self, width=300, height=100)
+        canvas.create_image(0, 0, image=rosseti)
+        canvas.grid()
+        image = tk.PhotoImage("asets\\Rosseti_logo.png")
+        image = image.subsample(3, 1)
+        image_lab = tk.Label(self)
+        image_lab.image = image
+        image_lab['image'] = image_lab.image
+        image_lab.place(x=1, y=100)
+
+
         car_label = CTkLabel(master=main_frame,
                               text="Модель машины:")
         car_label.grid(row=3, column=0, sticky="w", pady=(0, 10))
